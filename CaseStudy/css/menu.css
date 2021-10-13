@@ -1,0 +1,90 @@
+body {
+    font-family:Verdana, Arial, sans-serif;
+    background-color: #F6EFBD;
+    margin-left: 10%;
+    min-width: 800px;
+}
+header {
+    background-color: #D1B38E;
+    height: 100px;
+    width: 80%;
+    text-align: center;
+}
+header img {
+    height: 100px;
+    width: 50%;
+}
+#LeftColumn{
+    float: left;
+    width: 10%;
+    height: 450px;
+    background-color: #E2D1B2;
+}
+#RightColumn{
+    margin-left: 10%;
+    width: 70%;
+    height: 450px;
+    background-color: #F5F5DD;
+    color: #2D0000;
+}
+#RightColumn h2 {
+    margin: 0;
+    padding: 2%;
+}
+#RightColumn table#MenuTable {
+    border: 1px solid #F5F5DD;
+    margin-left: 10%;
+    float: left;
+    width: 80%;
+}
+#RightColumn table#MenuTable tr:nth-child(odd)
+{
+    background-color: #D1B38E;
+}
+#RightColumn table#MenuTable tr{
+    height: fit-content;
+}
+#RightColumn table#MenuTable td.title, 
+#RightColumn table#MenuTable td.order{
+    width: 10%;
+    text-align: center;
+}
+#RightColumn table#MenuTable td.description{
+    width: 70%;
+    padding: 2%;
+}
+#RightColumn table#MenuTable td.order input{
+    height: 20px;
+    width: 40px;
+}
+nav {
+    text-align: center;
+    padding: 10%;
+}
+nav a{
+    margin: 10%;
+    text-decoration: none;
+    text-align: center;
+    color: #694134;
+}
+nav a:focus{
+    color: #A48268;
+}
+footer {
+    width: 80%;
+    background-color: #D1B38E;
+    text-align: center;
+    padding: 20px 0;
+    font-style: italic;
+    font-size: small;
+}
+footer a{
+    margin: 30px;
+    color: #694134;
+}
+footer a:focus{
+    color: #A48268;
+}
+footer a:visited{
+    color: #A48268;
+}
