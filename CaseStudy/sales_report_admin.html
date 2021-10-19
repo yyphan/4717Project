@@ -3,8 +3,9 @@
     <head>
         <title>JavaJam Coffee House</title>
         <meta charset="utf-8">
+        <script src="js/sales_report_admin.js"></script>
         <link rel="stylesheet" href="css/index.css">
-        <link rel="stylesheet" href="css/sales_report.css">
+        <link rel="stylesheet" href="css/sales_report_admin.css">
     </head>
     <body>
         <header>
@@ -16,7 +17,7 @@
                 <a href="menu.php"><strong>Menu</strong></a> &nbsp;
                 <a href="music.html"><strong>Music</strong></a> &nbsp;
                 <a href="jobs.html"><strong>Jobs</strong></a> &nbsp;
-                <a href="sales_report.html"><strong>Admin-SR</strong></a>
+                <a href="sales_report_admin.html"><strong>Admin-SR</strong></a>
 				<a href="Price_update.php"><strong>Admin-PU</strong></a>
             </nav>
         </div>
@@ -24,11 +25,11 @@
             <h1>Daily Sales Report</h1>
             <h2>Click to generate daily sales report</h2>
             <div class="admin-option-container">
-                <input type="checkbox"/>
+                <input type="checkbox" id="TotalSalesCB" onchange="generateTotalSales()" />
                 <h2>Total dollar sales by products</h2>
             </div>
             <div class="admin-option-container">
-                <input type="checkbox"/>
+                <input type="checkbox" id="SalesQtyCB" onchange="generateSalesQty()" />
                 <h2>Sales quantities by product categories</h2>
             </div>
         </div>

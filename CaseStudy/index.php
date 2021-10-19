@@ -20,7 +20,7 @@
                 <a href="menu.php"><strong>Menu</strong></a> &nbsp;
                 <a href="music.html"><strong>Music</strong></a> &nbsp;
                 <a href="jobs.html"><strong>Jobs</strong></a> &nbsp;
-                <a href="sales_report.html"><strong>Admin-SR</strong></a>
+                <a href="sales_report_admin.html"><strong>Admin-SR</strong></a>
 				<a href="Price_update.php"><strong>Admin-PU</strong></a>
             </nav>
         </div>
