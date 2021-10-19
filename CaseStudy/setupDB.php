@@ -1,21 +1,7 @@
 <?php
 
 //Create table in database 
-
-// Create connection
-$conn = mysqli_connect("localhost", "f32ee", "f32ee", "f32ee");
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
-
-
-$sql = "use f32ee";
-
-if (!mysqli_query($conn, $sql)) {
-	echo "Failed to switch tables, check use statement.";
-	mysqli_close($conn);
-}
+include("conn.php");
 
 //Create table with fields
 $sql = "CREATE TABLE IF NOT EXISTS JAVATABLE (

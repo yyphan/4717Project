@@ -1,11 +1,6 @@
 <?php
-//Ensure that database connection is good before any code is executed. 
-$conn = mysqli_connect("localhost", "f32ee", "f32ee", "f32ee");
+include("conn.php");
 
-if (!$conn) {
-	die("Connection failed: " . mysqli_connect_error());
-	return;
-}
 //Declare variables 
 $Java=$_GET['Java'];
 $singleCafe=$_GET['singleCafe'];
