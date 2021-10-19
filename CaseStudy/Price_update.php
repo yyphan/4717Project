@@ -9,7 +9,7 @@ include "fetch.php";
 	 <title>JavaJam Coffee House</title>
      <meta charset="utf-8">
      <link rel="stylesheet" href="css/menu.css">
-	 <script defer src="update.js"></script>
+	 <script defer src="js/update.js"></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -18,7 +18,12 @@ include "fetch.php";
 </header>
         <div id="LeftColumn">
             <nav>
-                <a href="admin.php">Go back</a>
+                <a href="index.php"><strong>Home</strong></a> &nbsp;
+                <a href="menu.php"><strong>Menu</strong></a> &nbsp;
+                <a href="music.html"><strong>Music</strong></a> &nbsp;
+                <a href="jobs.html"><strong>Jobs</strong></a> &nbsp;
+                <a href="sales_report_admin.html"><strong>Admin-SR</strong></a>
+				<a href="Price_update.php"><strong>Admin-PU</strong></a>
             </nav>
         </div>
 
@@ -66,8 +71,11 @@ include "fetch.php";
                     </td>
                     
                 </tr>
-               
+               <tr>
+                    <td><input type="submit" value="Update Price" style="float:right;"></td>
+                </tr>
             </table>
+		 </form>
         </div>
         <footer> 
             Copyright &copy; 2021 JavaJam Coffee House

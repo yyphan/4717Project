@@ -1,8 +1,5 @@
 function updateInput(id){
     
-    let inputLow = document.getElementById("singleCafe");
-    let inputHigh = document.getElementById("doubleCafe");
-
     switch(id){
         case 1:
             inputLow = document.getElementById("Java");
@@ -13,6 +10,8 @@ function updateInput(id){
         
             break;
         case 2:
+			inputLow = document.getElementById("singleCafe");
+			inputHigh = document.getElementById("doubleCafe");
             if(document.getElementById("cafeCheck").checked) {
 				document.getElementById("cafeCheck").disabled = true;
                 inputLow.type = "number";
