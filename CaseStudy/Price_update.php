@@ -71,8 +71,11 @@ include "fetch.php";
                     </td>
                     
                 </tr>
-               
+               <tr>
+                    <td><input type="submit" value="Update Price" style="float:right;"></td>
+                </tr>
             </table>
+		 </form>
         </div>
         <footer> 
             Copyright &copy; 2021 JavaJam Coffee House
