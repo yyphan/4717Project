@@ -1,0 +1,20 @@
+
+h1 {
+    margin: 0;
+    padding: 2%;
+    color: #2D0000;
+}
+
+div.admin-option-container{
+    padding: 2%;
+}
+
+div.admin-option-container h2 {
+    display: inline;
+    color: #2D0000;
+}
+
+div.admin-option-container input {
+    width: 30px;
+    height: 30px;
+}

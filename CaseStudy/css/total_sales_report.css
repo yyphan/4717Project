@@ -1,0 +1,77 @@
+body {
+    font-family:Verdana, Arial, sans-serif;
+    background-color: #F6EFBD;
+    margin-left: 10%;
+    min-width: 800px;
+}
+header {
+    background-color: #D1B38E;
+    height: 100px;
+    width: 80%;
+    text-align: center;
+}
+header img {
+    height: 100px;
+    width: 50%;
+}
+#LeftColumn {
+    float: left;
+    width: 10%;
+    height: 450px;
+    background-color: #E2D1B2;
+}
+#LeftColumn p {
+    font-size: larger;
+    padding: 0 20px;
+}
+#RightColumn{
+    margin-left: 10%;
+    width: 70%;
+    height: 450px;
+    background-color: #F5F5DD;
+    color: #2D0000;
+}
+#RightColumn h2 {
+    margin: 0;
+    padding: 2%;
+}
+#RightColumn table#TotalSalesTable {
+    border: 1px solid #F5F5DD;
+    margin-left: 10%;
+    float: left;
+    width: 40%;
+}
+#RightColumn table#TotalSalesTable tr:nth-child(odd)
+{
+    background-color: #D1B38E;
+}
+#RightColumn table#TotalSalesTable tr{
+    height: 7vh;
+}
+#RightColumn table#TotalSalesTable td.title{
+    width: 20%;
+    text-align: center;
+}
+#RightColumn table#TotalSalesTable td.sales{
+    font-size: larger;
+    width: 20%;
+    padding: 2%;
+}
+footer {
+    width: 80%;
+    background-color: #D1B38E;
+    text-align: center;
+    padding: 20px 0;
+    font-style: italic;
+    font-size: small;
+}
+footer a{
+    margin: 30px;
+    color: #694134;
+}
+footer a:focus{
+    color: #A48268;
+}
+footer a:visited{
+    color: #A48268;
+}

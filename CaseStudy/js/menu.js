@@ -1,12 +1,10 @@
-const JUST_JAVA_SINGLE = 2;
-const CAFE_AU_LAIT_SINGLE = 2;
-const CAFE_AU_LAIT_DOUBLE = 3;
-const ICED_CAP_SINGLE = 4.75;
-const ICED_CAP_DOUBLE = 5.75;
+
 
 
 function CalculateJustJava(element)
 {
+    const JUST_JAVA_SINGLE = document.getElementById("JavaPrice").innerHTML;
+
     var qty = element.value;
     var sum = qty * JUST_JAVA_SINGLE;
 
@@ -16,6 +14,9 @@ function CalculateJustJava(element)
 
 function CalculateCafeAuLait()
 {
+    const CAFE_AU_LAIT_SINGLE = document.getElementById("singleCafePrice").innerHTML;
+    const CAFE_AU_LAIT_DOUBLE = document.getElementById("doubleCafePrice").innerHTML;
+
     var qty = document.getElementById("CafeAuLaitQty").value;
     var choice = document.querySelector('input[name="CafeAuLaitChoice"]:checked').value;
     
@@ -35,6 +36,9 @@ function CalculateCafeAuLait()
 
 function CalculateIcedCap()
 {
+    const ICED_CAP_SINGLE = document.getElementById("singleCappuccinoPrice").innerHTML;
+    const ICED_CAP_DOUBLE = document.getElementById("doubleCappuccinoPrice").innerHTML;
+
     var qty = document.getElementById("IcedCapQty").value;
     var choice = document.querySelector('input[name="IcedCapChoice"]:checked').value;
     
