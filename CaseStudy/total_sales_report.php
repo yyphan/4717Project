@@ -56,17 +56,17 @@ foreach($data_set as $data)
             <table id="TotalSalesTable">
                 <tr>
                     <td class="title"><strong>Just Java</strong></td>
-                    <td class="sales">$ <?php echo $just_java_total ?>
+                    <td class="sales">$ <?php echo $just_java_total; ?>
                     </td>
                 </tr>
                 <tr>
                     <td class="title"><strong>Cafe au Lait</strong></td>
-                    <td class="sales">$ <?php echo $cafe_au_lait_total ?>
+                    <td class="sales">$ <?php echo $cafe_au_lait_total; ?>
                     </td>
                 </tr>
                 <tr>
                     <td class="title"><strong>Iced Cappuccino</strong></td>
-                    <td class="sales">$ <?php echo $iced_cap_total ?>
+                    <td class="sales">$ <?php echo $iced_cap_total; ?>
                     </td>
                 </tr>
             </table>
