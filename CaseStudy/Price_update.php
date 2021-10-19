@@ -9,7 +9,7 @@ include "fetch.php";
 	 <title>JavaJam Coffee House</title>
      <meta charset="utf-8">
      <link rel="stylesheet" href="css/menu.css">
-	 <script defer src="update.js"></script>
+	 <script defer src="js/update.js"></script>
 </head>
 <body>
 	<div class="wrapper">

@@ -1,5 +1,6 @@
 <?php
     include "setupDB.php"; 
+    include "setupDB_part2.php";
 ?>
 
 <!DOCTYPE html>
