@@ -1,0 +1,50 @@
+body {
+    font-family: Verdana, Arial, sans-serif;
+    background-color: #FFFFFF;
+}
+
+#wrapper {
+    width: auto;
+    min-width: 800px;
+}
+
+header {
+    width: auto;
+    height: 100px;
+    background-color: #212728;
+}
+
+#menubar {
+    width: auto;
+    height: 100px;
+    min-width: 800px;
+}
+
+footer {
+    width: auto;
+    background-color: #212728;
+    text-align: center;
+    padding: 20px 0;
+    font-style: italic;
+    font-size: small;
+    color: #43C1D7;
+}
+
+footer a {
+    margin: 30px;
+    color: #43C1D7;
+}
+
+footer a:focus {
+    color: #A48268;
+}
+
+footer a:visited {
+    color: #A48268;
+}
+
+img.logo {
+    height: 100px;
+    width: auto;
+    float: left;
+}
