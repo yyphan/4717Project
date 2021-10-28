@@ -11,4 +11,3 @@ if (!mysqli_query($conn, $sql)) {
 	echo "Failed to switch tables, check use statement.";
 	mysqli_close($conn);
 }
-?>
