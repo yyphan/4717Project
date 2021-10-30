@@ -1,5 +1,35 @@
 <?php
-include("setupDB.php");
+include("conn.php");
+
+if (isset($_POST["submit"])) {
+    if (empty($_POST["name"]) || empty($_POST["email"]) || empty($_POST["password"]) || empty($_POST["confirmPassword"])) {
+        echo "All fields need to be filled in";
+        exit;
+    }
+
+    $name = $_POST["name"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+
+    $password = md5($password);
+
+    $sql = "INSERT INTO users (`name`, `email`, `password`, `role`) VALUES ('$name', '$email', '$password', 'patient')";
+    $result = mysqli_query($conn, $sql);
+
+    if (!$result) {
+        echo "Registration Query Failed";
+    } else {
+        $to = "f32ee@localhost";
+        $subject = "Registration Successful";
+        $message = "You have successfully registered";
+        $headers = 'From: f32ee@localhost' . "\r\n" .'Reply-To:f32ee@localhost' .'\r\n' . 'X-Mailer:PHP/' .phpversion();
+
+        mail($to, $subject, $message, $headers, '-ff32ee@localhost');
+
+        header("Location: login.php");
+        exit();
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +67,7 @@ include("setupDB.php");
                     <label for="password" class="form-label">Confirm Password: </label>
                     <input type="text" name="confirmPassword" id="ConfirmPassword" class="form-input">
                     <br />
-                    <input type="submit" class="form-btn" value="Register" id="RegisterBtn"></input>
+                    <input type="submit" class="form-btn" name="submit" value="Register" id="RegisterBtn"></input>
                     <br />
                     <hr />
                     <input type="button" class="form-btn" value="Already User? Login Here" id="LoginBtn"></input>
