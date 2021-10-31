@@ -31,3 +31,14 @@ function validateLoginForm() {
 
     return true;
 }
+
+function validateResetPwdForm() {
+    const email = document.forms["resetPwdForm"]["email"].value;
+
+    if (email == "") {
+        document.getElementById("ResetPwdMessage").innerHTML = ERROR_EMPTY_FIELDS;
+        return false;
+    }
+
+    return true;
+}
