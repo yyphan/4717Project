@@ -10,6 +10,7 @@ if(isset($_POST["email"]))
     if (!$result)
     {
         echo "Query Failed. Check DB connection.";
+	    mysqli_close($conn);
         exit;
     }
 
@@ -20,15 +21,26 @@ if(isset($_POST["email"]))
     }
     else
     {
+        $new_password = substr(str_shuffle(MD5(microtime())), 0, 10);
+        $hashed_new_password = md5($new_password);
+        $reset_query = "UPDATE users SET password = '" . $hashed_new_password . "' WHERE email = '" .$email ."';";
+        if (!mysqli_query($conn, $reset_query))
+        {
+            echo "Reset query Failed. Check DB connection.";
+            mysqli_close($conn);
+            exit;
+        }
+
         $to = "f32ee@localhost";
-        $subject = "Reset Your Password";
-        $message = "Please reset your password in: ";
+        $subject = "Password has been reset";
+        $message = "Please find your new password: " . $new_password;
         $headers = 'From: f32ee@localhost' . "\r\n" . 'Reply-To:f32ee@localhost' . '\r\n' . 'X-Mailer:PHP/' . phpversion();
 
         mail($to, $subject, $message, $headers, '-ff32ee@localhost');
 
         $result_message = "An email has been sent to your email.";
     }
+    mysqli_close($conn);
 }
 ?>
 
