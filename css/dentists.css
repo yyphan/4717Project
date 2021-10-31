@@ -7,7 +7,12 @@ h1 {
 }
 
 .dentist {
-    height: 500px;
+    height: 800px;
+}
+
+#cpo {
+	height:400px;
+	padding-top:100px;
 }
 
 h3 {
@@ -45,4 +50,22 @@ li2 {
     color: #43C1D7;
     text-align: center;
     text-decoration: none;
+}
+
+
+
+p6 {
+    float: left;
+	padding-top: 60px;
+	padding-bottom: 30px;
+    font-size: 30px;
+    font-family: Open Sans, Arial, Sans-serif;
+	
+}
+
+p7 {
+    float: left;
+    font-size: 20px;
+    font-family: Open Sans, Arial, Sans-serif;
+	padding-bottom:20px;
 }
