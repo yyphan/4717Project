@@ -46,7 +46,9 @@ if (isset($_POST["submit"])) {
     <div id="wrapper">
         <header>
             <div id="menubar">
-                <img src="assets/dicon1.jpg" class="logo">
+                <a href="index.php">
+                    <img src="assets/dicon1.jpg" class="logo">
+                </a>
                 <h1>Welcome to M&Y Dental Clinic</h1>
             </div>
         </header>
@@ -72,7 +74,7 @@ if (isset($_POST["submit"])) {
                     <p id="RegisterErrorMessage">
                     </p>
                     <hr />
-                    <input type="button" class="form-btn" value="Already User? Login Here" id="LoginBtn"></input>
+                    <input type="button" class="form-btn" value="Already User? Login Here" id="LoginBtn" onclick="window.location='login.php'"></input>
                 </form>
             </div>
         </div>

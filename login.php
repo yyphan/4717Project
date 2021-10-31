@@ -48,7 +48,9 @@ if (isset($_POST["email"]) && !empty($_POST["email"]) && isset($_POST["password"
     <div id="wrapper">
         <header>
             <div id="menubar">
-                <img src="assets/dicon1.jpg" class="logo">
+                <a href="index.php">
+                    <img src="assets/dicon1.jpg" class="logo">
+                </a>
                 <h1>Welcome Back to M&Y Dental Clinic</h1>
             </div>
         </header>
@@ -69,8 +71,8 @@ if (isset($_POST["email"]) && !empty($_POST["email"]) && isset($_POST["password"
                     </p>
                     <br />
                     <hr />
-                    <input type="button" class="form-btn" value="Register" id="RegisterBtn"></input>
-                    <input type="button" class="form-btn" value="Forgot Password" id="ResetPwdBtn"></input>
+                    <input type="button" class="form-btn" value="Register" id="RegisterBtn" onclick="window.location='register.php'"></input>
+                    <input type="button" class="form-btn" value="Forgot Password" id="ResetPwdBtn"  onclick="window.open('reset_password.php')"></input>
                 </form>
             </div>
         </div>
