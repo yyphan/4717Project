@@ -4,8 +4,8 @@
 <head>
     <title>Dentists</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="css/index.css">
-
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/dentists.css">
 </head>
 
 <body>

@@ -4,8 +4,8 @@
 <head>
     <title>Contact Us</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="css/index.css">
-
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/about.css">
 </head>
 
 <body>
