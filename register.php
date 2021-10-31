@@ -22,12 +22,11 @@ if (isset($_POST["submit"])) {
         $to = "f32ee@localhost";
         $subject = "Registration Successful";
         $message = "You have successfully registered";
-        $headers = 'From: f32ee@localhost' . "\r\n" .'Reply-To:f32ee@localhost' .'\r\n' . 'X-Mailer:PHP/' .phpversion();
+        $headers = 'From: f32ee@localhost' . "\r\n" . 'Reply-To:f32ee@localhost' . '\r\n' . 'X-Mailer:PHP/' . phpversion();
 
         mail($to, $subject, $message, $headers, '-ff32ee@localhost');
 
         header("Location: login.php");
-        exit();
     }
 }
 ?>
@@ -40,6 +39,7 @@ if (isset($_POST["submit"])) {
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/register.css">
+    <script src="js/form_validation.js"></script>
 </head>
 
 <body>
@@ -53,7 +53,7 @@ if (isset($_POST["submit"])) {
 
         <div class="content">
             <div class="form-container">
-                <form action="register.php" method="POST">
+                <form name="registrationForm" action="register.php" method="POST" onsubmit="return validateRegistrationForm()">
                     <h2>Register</h2>
                     <label for="name" class="form-label">Name: </label>
                     <input type="text" name="name" id="Name" class="form-input">
@@ -69,6 +69,8 @@ if (isset($_POST["submit"])) {
                     <br />
                     <input type="submit" class="form-btn" name="submit" value="Register" id="RegisterBtn"></input>
                     <br />
+                    <p id="RegisterErrorMessage">
+                    </p>
                     <hr />
                     <input type="button" class="form-btn" value="Already User? Login Here" id="LoginBtn"></input>
                 </form>

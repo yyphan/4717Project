@@ -10,6 +10,7 @@ include("setupDB.php");
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/reset_password.css">
+    <script src="js/form_validation.js"></script>
 </head>
 
 <body>
