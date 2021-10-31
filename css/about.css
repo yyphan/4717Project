@@ -1,0 +1,33 @@
+.about {
+    height: 800px;
+}
+
+h3 {
+    font-size: 50px;
+    font-family: Open Sans, Arial, Sans-serif;
+    color: #000000;
+    text-align: center;
+    padding-top: 50px;
+}
+
+h4 {
+    font-size: 30px;
+    font-family: Open Sans, Arial, Sans-serif;
+    color: #43C1D7;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+#aboutinfo {
+	width:auto;
+	height:120px;
+	padding-left:20px;
+	font-size: 20px;
+    font-family: Open Sans, Arial, Sans-serif;
+	
+	
+}
+
+.about {
+	height:900px;
+}

@@ -48,3 +48,56 @@ img.logo {
     width: auto;
     float: left;
 }
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding-top: 50px;
+    padding-right: 80px;
+    float: left;
+    overflow: hidden;
+    background-color: #212728;
+}
+
+li {
+    float: left;
+    display: inline-block;
+}
+
+
+
+
+
+li a {
+    font-size: 25px;
+    font-family: Open Sans, Arial, Sans-serif;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #43C1D7;
+}
+
+.button {
+    border: none;
+    color: white;
+    text-align: bottom;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 20px 10px;
+    cursor: pointer;
+}
+
+.button1 {
+    background-color: #43C1D7;
+    padding: 15px 32px;
+}
+
+.button2 {
+    background-color: #43C1D7;
+    padding: 15px 32px;
+}
