@@ -32,21 +32,22 @@ while ($row = mysqli_fetch_assoc($doctor_result)) {
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/booking.css">
     <script src="js/booking.js"></script>
+    <script src="js/form_validation.js"></script>
 </head>
 
 <body>
     <div id="wrapper">
         <?php include("header.php"); ?>
         <div class="booking">
-            <form method="post" action="show_post.php">
+            <form method="post" action="booking_action.php" onsubmit="return validateBookingForm()" name="bookingForm">
                 <h4><strong>Welcome, </strong></h4>
                 <h4>
                     <strong>I would like to book an appointment with Dr
-                        <select name="doctor_id" onchange="handleSelectDoctor(this)">
+                        <select name="doctorId" onchange="handleSelectDoctor(this)">
                             <option disabled selected>Select Your Doctor</option>
                             <?php
                             foreach ($doctor_list as $doctor) {
-                                echo "<option value='" . $doctor["id"] . "'>" . $doctor["name"] . "</option>";
+                                echo "<option value=" . $doctor["id"] . ">" . $doctor["name"] . "</option>";
                             }
                             ?>
                         </select>
@@ -56,8 +57,8 @@ while ($row = mysqli_fetch_assoc($doctor_result)) {
                 <br />
 
                 <div class="select">
-                    <label for="timeslots">Available Timeslots:</label>
-                    <select name="timeslots" id="TimeslotSelect">
+                    <label for="timeslot">Available Timeslots:</label>
+                    <select name="timeslot" id="TimeslotSelect">
                         <?php GenerateTimeslots($conn, $doctor_list); ?>
                     </select>
                     <small>Office hours are 9am to 6pm</small>

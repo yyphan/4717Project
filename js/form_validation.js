@@ -42,3 +42,15 @@ function validateResetPwdForm() {
 
     return true;
 }
+
+function validateBookingForm() {
+    const doctorId = document.forms["bookingForm"]["doctorId"].value;
+    const timeslot = document.forms["bookingForm"]["timeslot"].value;
+
+    if (doctorId == "" || timeslot == "") {
+        alert("Choose an available timeslot with your doctor!");
+        return false;
+    }
+
+    return true;
+}
