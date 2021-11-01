@@ -1,10 +1,37 @@
+<?php
+include("conn.php");
+include("generate_timeslots.php");
+
+session_start();
+
+if (!isset($_SESSION["user_role"])) {
+    header("location: login.php");
+} elseif ($_SESSION["user_role"] == "doctor") {
+    header("location: block_time.php");
+}
+
+// fetch all doctors
+$doctor_list;
+$doctor_query = "SELECT * FROM users WHERE role = 'doctor'";
+$doctor_result = mysqli_query($conn, $doctor_query);
+while ($row = mysqli_fetch_assoc($doctor_result)) {
+    $doctor_list[] = [
+        "id" => $row["id"],
+        "name" => $row["name"]
+    ];
+}
+
+
+?>
+
 <html lang="en">
 
 <head>
-    <title>Contact Us</title>
+    <title>Book an Appointment</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/booking.css">
+    <script src="js/booking.js"></script>
 </head>
 
 <body>
@@ -12,27 +39,30 @@
         <?php include("header.php"); ?>
         <div class="booking">
             <form method="post" action="show_post.php">
-
                 <h4><strong>Welcome, </strong></h4>
-
-                <h4><strong>I would like to book an appointment with Dr
-
-                        <label for="Dr"></label>
-
-                        <select name="Dr" id="dr">
-                            <option value="bot">Bender Bot</option>
-                            <option value="gold">Goldman Bot</option>
+                <h4>
+                    <strong>I would like to book an appointment with Dr
+                        <select name="doctor_id" onchange="handleSelectDoctor(this)">
+                            <option disabled selected>Select Your Doctor</option>
+                            <?php
+                            foreach ($doctor_list as $doctor) {
+                                echo "<option value='" . $doctor["id"] . "'>" . $doctor["name"] . "</option>";
+                            }
+                            ?>
                         </select>
-                    </strong></h4>
-                <br>
-                <div class="select">
+                    </strong>
+                </h4>
 
-                    <label for="Date">Date:</label>
-                    <input type="date" name="date" id="date">
-                    <input type="time" id="appt" name="appt" step="3600" min="09:00" max="18:00" required>
+                <br />
+
+                <div class="select">
+                    <label for="timeslots">Available Timeslots:</label>
+                    <select name="timeslots" id="TimeslotSelect">
+                        <?php GenerateTimeslots($conn, $doctor_list); ?>
+                    </select>
                     <small>Office hours are 9am to 6pm</small>
                     <input id="bookings" type="submit" value="Book now!">
-
+                </div>
             </form>
         </div>
     </div>
