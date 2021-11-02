@@ -3,6 +3,7 @@ include("conn.php");
 
 session_start();
 
+// patient booking a new appointment with doctor
 if(isset($_SESSION["user_role"]) && $_SESSION["user_role"] == "patient")
 {
     if (isset($_POST["timeslot"]) && isset($_POST["doctorId"]))
@@ -23,6 +24,36 @@ if(isset($_SESSION["user_role"]) && $_SESSION["user_role"] == "patient")
             $to = "f32ee@localhost";
             $subject = "Booking Successful";
             $message = "You have successfully Booked a session";
+            $headers = 'From: f32ee@localhost' . "\r\n" . 'Reply-To:f32ee@localhost' . '\r\n' . 'X-Mailer:PHP/' . phpversion();
+
+            mail($to, $subject, $message, $headers, '-ff32ee@localhost');
+
+            header("Location: profile.php");
+        }
+    }
+}
+
+// doctor blocking a timeslot (booking an appointment with himself)
+if(isset($_SESSION["user_role"]) && $_SESSION["user_role"] == "doctor")
+{
+    if (isset($_POST["timeslot"]))
+    {
+        $patient_id = $_SESSION["user_id"];
+        $doctor_id = $_SESSION["user_id"];
+        $start_at = $_POST["timeslot"];
+        $end_at_datetime = new DateTime($start_at);
+        $end_at_datetime->add(new DateInterval("PT1H"));
+        $end_at = $end_at_datetime->format("Y-m-d H:i:s");
+
+        $new_appt_query = "INSERT INTO appointments (start_at, end_at, doctor_id, patient_id) VALUES ('$start_at', '$end_at', $doctor_id, $patient_id)";
+        $new_appt_result = mysqli_query($conn, $new_appt_query);
+
+        if (!$new_appt_result) {
+            echo "Booking Query Failed";
+        } else {
+            $to = "f32ee@localhost";
+            $subject = "Blocking Timeslot Successful";
+            $message = "You have successfully blocked a timeslot";
             $headers = 'From: f32ee@localhost' . "\r\n" . 'Reply-To:f32ee@localhost' . '\r\n' . 'X-Mailer:PHP/' . phpversion();
 
             mail($to, $subject, $message, $headers, '-ff32ee@localhost');

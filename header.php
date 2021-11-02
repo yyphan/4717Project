@@ -25,7 +25,20 @@ session_start();
             <li><a href="Services.php"><strong>Our Services</strong></a></li>
             <li><a href="about.php"><strong>About Us</strong></a></li>
             <li><a href="contact.php"><strong>Contact Us</strong></a></li>
-            <li><a href=<?php echo (isset($_SESSION["user_name"])) ? "booking.php" : "login.php"; ?>><strong>Booking</strong></a></li>
+            <?php
+                if (!isset($_SESSION["user_role"]))
+                {
+                    echo "<li><a href='login.php'><strong>Booking</strong></a></li>";
+                }
+                elseif ($_SESSION["user_role"] == "patient")
+                {
+                    echo "<li><a href='booking.php'><strong>Booking</strong></a></li>";
+                }
+                elseif ($_SESSION["user_role"] == "doctor")
+                {
+                    echo "<li><a href='block_time.php'><strong>Block Timeslot</strong></a></li>";
+                }
+            ?>
         </ul>
     </div>
 </header>
