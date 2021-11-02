@@ -129,7 +129,7 @@ session_start();
 					$i = 1;
 
 					echo '<p style="margin: 20px auto;">';
-					echo "The table below shows your current appointments.";
+					echo "The table below shows your booking history.";
 					echo '</p>';
 					echo '<table border="1">';
 					echo '<tr><td>No.</td><td>Start Time</td><td>End Time</td><td>Patient</td></tr>';
