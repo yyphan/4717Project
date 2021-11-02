@@ -26,7 +26,7 @@ if (isset($_POST["email"]) && !empty($_POST["email"]) && isset($_POST["password"
         $_SESSION["user_email"] = $row["email"];
         $_SESSION["user_role"]  = $row["role"];
         
-        header("Location: index.php");
+        header("Location: profile.php");
     } else {
         $error_message = "The password you entered is invalid. Please try again.";
     }

@@ -10,6 +10,7 @@ session_start();
         <?php if (isset($_SESSION["user_name"])) {
         ?>
             <button class="button button1" onclick="window.location='logout.php'">Logout</button>
+            <button class="button button1" onclick="window.location='profile.php'">Personal Profile</button>
         <?php
         } else {
         ?>
