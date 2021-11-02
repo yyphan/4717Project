@@ -122,7 +122,7 @@ session_start();
 					echo '<p>You have not booked any appointments yet.</p>';
 				}
 			} elseif ($_SESSION["user_role"] == "doctor") {
-				$query = "SELECT * FROM appointments WHERE doctor_id = " . $user_id . " AND start_at >=CURRENT_TIMESTAMP ORDER BY start_at ASC";
+				$query = "SELECT * FROM appointments WHERE doctor_id = " . $user_id . " AND end_at <=CURRENT_TIMESTAMP ORDER BY start_at ASC";
 				$result = mysqli_query($conn, $query);
 
 				if ($result->num_rows > 0) {

@@ -10,7 +10,7 @@ session_start();
         <?php if (isset($_SESSION["user_name"])) { // user is logged in, show logout and profile buttons
         ?>
             <button class="button button1" onclick="window.location='logout.php'">Logout</button>
-            <button class="button button1" onclick="window.location='profile.php'">Personal Profile</button>
+            <button class="button button1" onclick="window.location='profile.php'">Profile</button>
         <?php
         } else { // user is not logged in, show login and register buttons
         ?>
@@ -37,7 +37,7 @@ session_start();
                 }
                 elseif ($_SESSION["user_role"] == "doctor") // user is logged in and is a doctor, show block timeslot button
                 {
-                    echo "<li><a href='block_time.php'><strong>Block Timeslot</strong></a></li>";
+                    echo "<li><a href='block_time.php'><strong>Block</strong></a></li>";
                 }
             ?>
         </ul>
