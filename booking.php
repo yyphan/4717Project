@@ -6,8 +6,10 @@ session_start();
 
 if (!isset($_SESSION["user_role"])) {
     header("location: login.php");
-} elseif ($_SESSION["user_role"] == "doctor") {
+} elseif ($_SESSION["user_role"] == "doctor" && !isset($_SESSION["appt_id"])) {
     header("location: block_time.php");
+} elseif ($_SESSION["user_role"] == "doctor" && isset($_SESSION["appt_id"])) {
+    header("location: doctor_reschedule.php");
 }
 
 // fetch all doctors
@@ -21,7 +23,14 @@ while ($row = mysqli_fetch_assoc($doctor_result)) {
     ];
 }
 
-
+// if this is a rescheduling operation
+// create a session variable to track the id of the appointment
+if (isset($_POST["appt_id"])) {
+    $_SESSION["appt_id"] = $_POST["appt_id"];
+}
+else {
+    unset($_SESSION["appt_id"]);
+}
 ?>
 
 <html lang="en">

@@ -10,6 +10,7 @@ session_start();
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" href="css/profile.css">
+	<script src="js/profile.js"></script>
 </head>
 
 <body>
@@ -17,8 +18,8 @@ session_start();
 		<?php include("header.php"); ?>
 		<div class="profile">
 			<!-- Rescheduling will be done by submitting the id of the appointment to be rescheduled-->
-			<form id="RescheduleForm" action="booking.php" hidden>
-				<input type="text" name="appt_id" id="AppointmentID">
+			<form method="POST" id="RescheduleForm" action="booking.php" hidden>
+				<input type="text" name="appt_id" id="AppointmentId">
 			</form>
 			<h8>
 				<?php
@@ -48,7 +49,7 @@ session_start();
 
 			<?php	// Active bookings
 			if ($_SESSION["user_role"] == "patient") {
-				$query = "SELECT * FROM appointments WHERE patient_id = " . $user_id . " AND start_at >=CURRENT_TIMESTAMP ORDER BY start_at DESC";
+				$query = "SELECT * FROM appointments WHERE patient_id = " . $user_id . " AND start_at >=CURRENT_TIMESTAMP ORDER BY start_at ASC";
 				$result = mysqli_query($conn, $query);
 				if ($result->num_rows > 0) {
 					$i = 1;
@@ -61,7 +62,7 @@ session_start();
 						// each row with reschedule button
 						// store the id of the appt as id of <tr>
 						// so that when rescheduling it can be known it is which appt to be resceduled
-						echo '<tr id="' . $row["id"] . '"><td>' . $i . '</td><td>' . $row['start_at'] . '</td><td>' . $row['end_at'] . '</td><td>' . $user_list[$row["doctor_id"]] . '<td><button>Reschedule</button></td></td>';
+						echo '<tr><td>' . $i . '</td><td>' . $row['start_at'] . '</td><td>' . $row['end_at'] . '</td><td>' . $user_list[$row["doctor_id"]] . '</td><td><button id="' . $row["id"] . '" onclick="SubmitRescheduleForm(this)">Reschedule</button></td></tr>';
 						$i = $i + 1;
 					}
 					echo '</table>';
@@ -69,7 +70,7 @@ session_start();
 					echo '<p>You have no appointments.</p>';
 				}
 			} elseif ($_SESSION["user_role"] == "doctor") {
-				$query = "SELECT * FROM appointments WHERE doctor_id = " . $user_id . " AND start_at >=CURRENT_TIMESTAMP ORDER BY start_at DESC";
+				$query = "SELECT * FROM appointments WHERE doctor_id = " . $user_id . " AND start_at >=CURRENT_TIMESTAMP ORDER BY start_at ASC";
 				$result = mysqli_query($conn, $query);
 
 				if ($result->num_rows > 0) {
@@ -87,9 +88,9 @@ session_start();
 						// thus we do not show here as here are all appt with patients
 						if ($user_id != $row["patient_id"]) {
 							// each row with reschedule button
-							// store the id of the appt as id of <tr>
+							// store the id of the appt as id of <button>
 							// so that when rescheduling it can be known it is which appt to be resceduled
-							echo '<tr id="' . $row["id"] . '"><td>' . $i . '</td><td>' . $row['start_at'] . '</td><td>' . $row['end_at'] . '</td><td>' . $user_list[$row["patient_id"]] . '<td><button>Reschedule</button></td></td>';
+							echo '<tr><td>' . $i . '</td><td>' . $row['start_at'] . '</td><td>' . $row['end_at'] . '</td><td>' . $user_list[$row["patient_id"]] . '</td><td><button id="' . $row["id"] . '" onclick="SubmitRescheduleForm(this)">Reschedule</button></td></tr>';
 							$i = $i + 1;
 						}
 					}
@@ -102,7 +103,7 @@ session_start();
 
 			<?php	// History bookings
 			if ($_SESSION["user_role"] == "patient") {
-				$query = "SELECT * FROM appointments WHERE patient_id = " . $user_id . " AND end_at <=CURRENT_TIMESTAMP ORDER BY start_at DESC";
+				$query = "SELECT * FROM appointments WHERE patient_id = " . $user_id . " AND end_at <=CURRENT_TIMESTAMP ORDER BY start_at ASC";
 				$result = mysqli_query($conn, $query);
 				if ($result->num_rows > 0) {
 					$i = 1;
@@ -113,7 +114,7 @@ session_start();
 					echo '<tr><td>No.</td><td>Start Time</td><td>End Time</td><td>Doctor</td></tr>';
 					while ($row = $result->fetch_assoc()) {
 						// each row without reschedule button
-						echo '<tr><td>' . $i . '</td><td>' . $row['start_at'] . '</td><td>' . $row['end_at'] . '</td><td>' . $user_list[$row["doctor_id"]] . '</td>';
+						echo '<tr><td>' . $i . '</td><td>' . $row['start_at'] . '</td><td>' . $row['end_at'] . '</td><td>' . $user_list[$row["doctor_id"]] . '</td></tr>';
 						$i = $i + 1;
 					}
 					echo '</table>';
@@ -121,7 +122,7 @@ session_start();
 					echo '<p>You have not booked any appointments yet.</p>';
 				}
 			} elseif ($_SESSION["user_role"] == "doctor") {
-				$query = "SELECT * FROM appointments WHERE doctor_id = " . $user_id . " AND start_at >=CURRENT_TIMESTAMP ORDER BY start_at DESC";
+				$query = "SELECT * FROM appointments WHERE doctor_id = " . $user_id . " AND start_at >=CURRENT_TIMESTAMP ORDER BY start_at ASC";
 				$result = mysqli_query($conn, $query);
 
 				if ($result->num_rows > 0) {
@@ -139,7 +140,7 @@ session_start();
 						// thus we do not show here as here are all appt with patients
 						if ($user_id != $row["patient_id"]) {
 							// each row without reschedule button
-							echo '<tr><td>' . $i . '</td><td>' . $row['start_at'] . '</td><td>' . $row['end_at'] . '</td><td>' . $user_list[$row["patient_id"]] . '</td>';
+							echo '<tr><td>' . $i . '</td><td>' . $row['start_at'] . '</td><td>' . $row['end_at'] . '</td><td>' . $user_list[$row["patient_id"]] . '</td></tr>';
 							$i = $i + 1;
 						}
 					}
