@@ -1,9 +1,13 @@
 <?php
+// this generate timeslots for all doctors
+// all <option>s remain hidden until user selects a doctor
+// that's when a js function is called to unhide the <option>s for that particular doctor
 function GenerateTimeslots($conn, $doctor_list)
 {
-    // calculate avaiable time slots for each doctor
     $available_timeslots_by_doctor = [];
+    // looping one doctor at a time, calculate avaiable time slots for each doctor
     foreach ($doctor_list as $doctor) {
+        // get all booked timeslots for the doctor
         $id = $doctor["id"];
         $appointment_query = "SELECT * FROM appointments WHERE doctor_id =" . $id;
         $appointment_result = mysqli_query($conn, $appointment_query);
@@ -42,11 +46,12 @@ function GenerateTimeslots($conn, $doctor_list)
         }
 
         // extract booked timeslots to get actual available timeslots
+        // available = initialized available - booked
         $available_timeslots = array_diff($initial_timeslots, $booked_timeslots);
         $available_timeslots_by_doctor[$doctor["id"]] = $available_timeslots;
     }
 
-    // populate the options
+    // generate the options
     foreach ($available_timeslots_by_doctor as $doctor_id => $available_timeslots) {
         foreach ($available_timeslots as $timeslot) {
             $start_datetime = new DateTime($timeslot);
@@ -58,9 +63,13 @@ function GenerateTimeslots($conn, $doctor_list)
     }
 }
 
+// this generate timeslots for the doctor
+// the only difference is this only generates timeslots for one doctor
+// who is probably the one calling this function, hoping either to block his timeslots or rescheduling
+// since it is only for one doctor, <option> are not hidden by defaults
 function GenerateTimeslotsForDoctor($conn, $doctor_info)
 {
-    // calculate avaiable time slots for each doctor
+    // get all booked timeslots for the doctor
     $doctor_id = $doctor_info["id"];
     $appointment_query = "SELECT * FROM appointments WHERE doctor_id =" . $doctor_id;
     $appointment_result = mysqli_query($conn, $appointment_query);
@@ -99,9 +108,10 @@ function GenerateTimeslotsForDoctor($conn, $doctor_info)
     }
 
     // extract booked timeslots to get actual available timeslots
+    // available = initialized available - booked
     $available_timeslots = array_diff($initial_timeslots, $booked_timeslots);
 
-    // populate the options
+    // generate the options
     foreach ($available_timeslots as $timeslot) {
         $start_datetime = new DateTime($timeslot);
         $end_datetime = new DateTime($timeslot);

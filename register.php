@@ -7,15 +7,19 @@ if (isset($_POST["submit"])) {
         exit;
     }
 
+    // prepare data for new user
     $name = $_POST["name"];
     $email = $_POST["email"];
     $password = $_POST["password"];
 
+    // hash the password and store the hash in our db
     $password = md5($password);
 
+    // insert data for new user
     $sql = "INSERT INTO users (`name`, `email`, `password`, `role`) VALUES ('$name', '$email', '$password', 'patient')";
     $result = mysqli_query($conn, $sql);
 
+    // send the email and redirect to login page if registration is successful
     if (!$result) {
         echo "Registration Query Failed";
     } else {

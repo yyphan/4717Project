@@ -4,10 +4,12 @@ include("conn.php");
 session_start();
 
 if (isset($_POST["email"]) && !empty($_POST["email"]) && isset($_POST["password"]) && !empty($_POST["password"])) {
+    // prepare data for validation
     $email = $_POST["email"];
     $entered_password = $_POST["password"];
     $hashed_entered_password = md5($entered_password);
 
+    // try to search for the email provided
     $query = "SELECT * FROM users WHERE email = '" . $email . "'";
     $result = mysqli_query($conn, $query);
 
@@ -17,17 +19,17 @@ if (isset($_POST["email"]) && !empty($_POST["email"]) && isset($_POST["password"
     }
 
     $row = $result->fetch_assoc();
-    if (empty($row)) {
+    if (empty($row)) { // if this email is not found, ask him to register
         $error_message = "This email is not registered. Check your email or register.";
         mysqli_close($conn);
-    } elseif ($row["password"] == $hashed_entered_password) {
+    } elseif ($row["password"] == $hashed_entered_password) { // if the email is found and password matches, log the user in
         $_SESSION["user_id"]    = $row["id"];
         $_SESSION["user_name"]  = $row["name"];
         $_SESSION["user_email"] = $row["email"];
         $_SESSION["user_role"]  = $row["role"];
         
         header("Location: profile.php");
-    } else {
+    } else { // if the email is found and password does not match, ask to try entering again
         $error_message = "The password you entered is invalid. Please try again.";
     }
 

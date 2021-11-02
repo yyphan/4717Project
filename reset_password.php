@@ -1,36 +1,35 @@
 <?php
 include("conn.php");
 
-if(isset($_POST["email"]))
-{
+if (isset($_POST["email"])) {
+    // get the email to reset password
     $email = $_POST["email"];
 
+    // check if email is registered
     $query = "SELECT * FROM users WHERE email = '" . $email . "'";
     $result = mysqli_query($conn, $query);
-    if (!$result)
-    {
+    if (!$result) {
         echo "Query Failed. Check DB connection.";
-	    mysqli_close($conn);
+        mysqli_close($conn);
         exit;
     }
 
     $row = $result->fetch_assoc();
-    if (empty($row))
-    {
+    if (empty($row)) { // if email not registered, ask to reenter
         $result_message = "Email is not registerd. Please check your entered email.";
-    }
-    else
-    {
+    } else {
+        // generate a random password
         $new_password = substr(str_shuffle(MD5(microtime())), 0, 10);
         $hashed_new_password = md5($new_password);
-        $reset_query = "UPDATE users SET password = '" . $hashed_new_password . "' WHERE email = '" .$email ."';";
-        if (!mysqli_query($conn, $reset_query))
-        {
+        // update the newly generated password to db
+        $reset_query = "UPDATE users SET password = '" . $hashed_new_password . "' WHERE email = '" . $email . "';";
+        if (!mysqli_query($conn, $reset_query)) {
             echo "Reset query Failed. Check DB connection.";
             mysqli_close($conn);
             exit;
         }
 
+        // send email to inform user of the new password
         $to = "f32ee@localhost";
         $subject = "Password has been reset";
         $message = "Please find your new password: " . $new_password;

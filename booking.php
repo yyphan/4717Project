@@ -4,6 +4,7 @@ include("generate_timeslots.php");
 
 session_start();
 
+// redirect if user is not supposed to be in this page
 if (!isset($_SESSION["user_role"])) {
     header("location: login.php");
 } elseif ($_SESSION["user_role"] == "doctor" && !isset($_SESSION["appt_id"])) {
@@ -27,8 +28,7 @@ while ($row = mysqli_fetch_assoc($doctor_result)) {
 // create a session variable to track the id of the appointment
 if (isset($_POST["appt_id"])) {
     $_SESSION["appt_id"] = $_POST["appt_id"];
-}
-else {
+} else {
     unset($_SESSION["appt_id"]);
 }
 ?>
@@ -48,6 +48,7 @@ else {
     <div id="wrapper">
         <?php include("header.php"); ?>
         <div class="booking">
+            <!-- booking_action.php is handling blocking of timeslots -->
             <form method="post" action="booking_action.php" onsubmit="return validateBookingForm()" name="bookingForm">
                 <h4><strong>Welcome, </strong></h4>
                 <h4>
@@ -68,7 +69,11 @@ else {
                 <div class="select">
                     <label for="timeslot">Available Timeslots:</label>
                     <select name="timeslot" id="TimeslotSelect">
-                        <?php GenerateTimeslots($conn, $doctor_list); ?>
+                        <?php
+                        // this function is from generate_timeslots.php
+                        // it generates the doctor's available timeslots for user to choose
+                        GenerateTimeslots($conn, $doctor_list);
+                        ?>
                     </select>
                     <small>Office hours are 9am to 6pm</small>
                     <input id="bookings" type="submit" value="Book now!">

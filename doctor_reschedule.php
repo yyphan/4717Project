@@ -4,6 +4,7 @@ include("generate_timeslots.php");
 
 session_start();
 
+// redirect if user is not supposed to be in this page
 if (!isset($_SESSION["user_role"])) {
     header("location: login.php");
 } elseif (!isset($_SESSION["appt_id"])) {
@@ -31,6 +32,7 @@ $doctor_info = [
     <div id="wrapper">
         <?php include("header.php"); ?>
         <div class="booking">
+            <!-- booking_action.php is handling rescheduling of timeslots -->
             <form method="post" action="booking_action.php">
                 <h4><strong>Welcome, Dr <?php echo $doctor_info["name"] ?> </strong></h4>
 
@@ -39,7 +41,11 @@ $doctor_info = [
                 <div class="select">
                     <label for="timeslot">Reschedule to a new Timeslot:</label>
                     <select name="timeslot" id="TimeslotSelect">
-                        <?php GenerateTimeslotsForDoctor($conn, $doctor_info); ?>
+                        <?php
+                        // this function is from generate_timeslots.php
+                        // it generates the doctor's available timeslots for him to reschedule
+                        GenerateTimeslotsForDoctor($conn, $doctor_info); 
+                        ?>
                     </select>
                     <input id="bookings" type="submit" value="Reschedule">
                 </div>

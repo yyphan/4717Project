@@ -1,3 +1,5 @@
+// this is to show the correct timeslots when user selects a doctor
+// e.g. only options with classname "option-for-id-1" is shown if user selects a doctor with id 1
 function handleSelectDoctor(target) {
     // reset select
     let select = document.getElementById("TimeslotSelect");

@@ -4,13 +4,14 @@ include("generate_timeslots.php");
 
 session_start();
 
+// redirect if user is not supposed to be in this page
 if (!isset($_SESSION["user_role"])) {
     header("location: login.php");
 } elseif ($_SESSION["user_role"] == "patient") {
     header("location: booking.php");
 }
 
-// current doctor info
+// get current doctor info
 $doctor_info = [
     "id" => $_SESSION["user_id"],
     "name" => $_SESSION["user_name"]
@@ -31,6 +32,7 @@ $doctor_info = [
     <div id="wrapper">
         <?php include("header.php"); ?>
         <div class="booking">
+            <!-- booking_action.php is handling blocking of timeslots -->
             <form method="post" action="booking_action.php">
                 <h4><strong>Welcome, Dr <?php echo $doctor_info["name"] ?> </strong></h4>
 
@@ -39,7 +41,11 @@ $doctor_info = [
                 <div class="select">
                     <label for="timeslot">Block this Timeslot:</label>
                     <select name="timeslot" id="TimeslotSelect">
-                        <?php GenerateTimeslotsForDoctor($conn, $doctor_info); ?>
+                        <?php 
+                        // this function is from generate_timeslots.php
+                        // it generates the doctor's available timeslots for him to block
+                        GenerateTimeslotsForDoctor($conn, $doctor_info); 
+                        ?>
                     </select>
                     <input id="bookings" type="submit" value="Block!">
                 </div>

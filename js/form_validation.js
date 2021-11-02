@@ -1,6 +1,7 @@
 const ERROR_EMPTY_FIELDS = "All fields must be filled in";
 const ERROR_PWD_NOT_MATCH = "Passwords do not match";
 
+// this js is all about preventing users from submitting empty fields
 function validateRegistrationForm() {
     const name = document.forms["registrationForm"]["name"].value;
     const email = document.forms["registrationForm"]["email"].value;
