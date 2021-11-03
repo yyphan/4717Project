@@ -4,6 +4,14 @@ include("generate_timeslots.php");
 
 session_start();
 
+// if this is a rescheduling operation
+// create a session variable to track the id of the appointment
+if (isset($_POST["appt_id"])) {
+    $_SESSION["appt_id"] = $_POST["appt_id"];
+} else {
+    unset($_SESSION["appt_id"]);
+}
+
 // redirect if user is not supposed to be in this page
 if (!isset($_SESSION["user_role"])) {
     header("location: login.php");
@@ -22,14 +30,6 @@ while ($row = mysqli_fetch_assoc($doctor_result)) {
         "id" => $row["id"],
         "name" => $row["name"]
     ];
-}
-
-// if this is a rescheduling operation
-// create a session variable to track the id of the appointment
-if (isset($_POST["appt_id"])) {
-    $_SESSION["appt_id"] = $_POST["appt_id"];
-} else {
-    unset($_SESSION["appt_id"]);
 }
 ?>
 

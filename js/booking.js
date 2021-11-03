@@ -1,10 +1,10 @@
 // this is to show the correct timeslots when user selects a doctor
 // e.g. only options with classname "option-for-id-1" is shown if user selects a doctor with id 1
 function handleSelectDoctor(target) {
-    // reset select
+    // reset timeslot select
     let select = document.getElementById("TimeslotSelect");
     select.selectedIndex = -1;
-    // disable all options
+    // disable all timeslot options
     let arrToDisable = document.getElementsByClassName("timeslot-option");
     for (let i = 0; i < arrToDisable.length; i++) {
         arrToDisable[i].disabled = true;

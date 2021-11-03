@@ -50,9 +50,11 @@ if(isset($_SESSION["user_role"]) && $_SESSION["user_role"] == "patient" && isset
         // prepare the data to be updated
         $appt_id = $_SESSION["appt_id"];
         $doctor_id = $_POST["doctorId"];
+        // $start_at = '2021-11-04 01:00:00'
         $start_at = $_POST["timeslot"];
         $end_at_datetime = new DateTime($start_at);
         $end_at_datetime->add(new DateInterval("PT1H"));
+        // $end_at = '2021-11-04 02:00:00'
         $end_at = $end_at_datetime->format("Y-m-d H:i:s");
 
         // update that particular appointment (passed in with $_SESSION["appt_id"])

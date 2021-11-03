@@ -48,16 +48,18 @@ function GenerateTimeslots($conn, $doctor_list)
         // extract booked timeslots to get actual available timeslots
         // available = initialized available - booked
         $available_timeslots = array_diff($initial_timeslots, $booked_timeslots);
+        // id => array of available timeslots
         $available_timeslots_by_doctor[$doctor["id"]] = $available_timeslots;
-    }
+    } // end of loop
 
     // generate the options
-    foreach ($available_timeslots_by_doctor as $doctor_id => $available_timeslots) {
-        foreach ($available_timeslots as $timeslot) {
+    foreach ($available_timeslots_by_doctor as $doctor_id => $available_timeslots) { // for each doctor
+        foreach ($available_timeslots as $timeslot) { // for every timeslot
             $start_datetime = new DateTime($timeslot);
             $end_datetime = new DateTime($timeslot);
             $end_datetime = $end_datetime->add(new DateInterval("PT1H"));
             $human_readable_timeslot = $start_datetime->format("Y-M-d hA") . " - " . $end_datetime->format("hA");
+            // $timeslot = '2021-11-04 01:00:00'
             echo "<option value='" . $timeslot . "' class='timeslot-option option-for-id-" . $doctor_id . "' disabled>" . $human_readable_timeslot . "</option>";
         }
     }
